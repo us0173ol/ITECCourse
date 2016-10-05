@@ -5,19 +5,22 @@ import java.util.ArrayList;
 /**
  * Created by miked on 9/27/2016.
  */
-public class ITECCourse {
+public class ITECCourse {//ITECCourse object has the following attributes
     private String name;
     private int code;
     private ArrayList<String> students;
     private int maxStudents;
     private String roomNumber;
 
-    public int getCode(){
+    //getters and setters for each variable
+    public int getCode() {
         return code;
     }
-    public void setCode(int newCode){
+
+    public void setCode(int newCode) {
         code = newCode;
     }
+
     public String getName() {
         return name;
     }
@@ -51,7 +54,7 @@ public class ITECCourse {
     }
 
     //Constructor
-    public ITECCourse(String courseName, int courseCode, int courseMaxStudents, String roomNumber){
+    public ITECCourse(String courseName, int courseCode, int courseMaxStudents, String roomNumber) {
         this.name = courseName;
         this.code = courseCode;
         this.students = new ArrayList<String>();
@@ -59,6 +62,7 @@ public class ITECCourse {
         this.roomNumber = roomNumber;
     }
 
+    //method for adding students if the class isnt full already
     public void addStudent(String studentName) {
         if (students.size() == maxStudents) {
             System.out.println("sorry " + studentName + ", " + getName() + " is full");
@@ -66,15 +70,18 @@ public class ITECCourse {
             students.add(studentName);
         }
     }
-    public void removeStudent(String studentName){
-        if(students.contains(studentName)){
+
+    //method for removing students unless the name isnt found to be enrolled
+    public void removeStudent(String studentName) {
+        if (students.contains(studentName)) {
             students.remove(studentName);
             System.out.println(studentName + " was un-enrolled from " + this.name);
-        }else{
+        } else {
             System.out.println(studentName + " was not found in " + this.name);
         }
     }
 
+    //prints all course info for each class when called
     public void writeCourseInfo() {
         System.out.println("Course Name: " + name);
         System.out.println("Room number: " + roomNumber);
@@ -88,18 +95,22 @@ public class ITECCourse {
         System.out.println("The max number of students for this course is " + maxStudents);
     }
 
-
+    //returns the size of the class
     public int getNumberOfStudents() {
         return this.students.size();
     }
-    public  int  getAvailability() {
+
+    //gets the number of available seats per class and returns it
+    public int getAvailability() {
 
         int freeSpace = this.maxStudents - this.students.size();
         return freeSpace;
     }
-    public void printAvailability(){
+
+    //method for printing only the availability and class name for each class
+    public void printAvailability() {
         System.out.println("There are " + getAvailability() + " seats available in " +
-        getName());
+                getName());
     }
-    }
+}
 
